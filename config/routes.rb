@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-
-  match '/home', to: 'static_pages#home', via: 'get'
+  # match is more readable for static pages
+  match '/home',  to: 'static_pages#home',  via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
-  match '/help', to: 'static_pages#help', via: 'get'
+  match '/help',  to: 'static_pages#help',  via: 'get'
+
+  # get is better used for dynamic pages
+  get '/tasks/:id', to: 'tasks#show', as: :show_task
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

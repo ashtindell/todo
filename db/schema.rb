@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20141007212921) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "completed",  default: false
-    t.date     "due_at",     default: '2014-10-07'
+    t.date     "due_at"
     t.string   "location"
   end
 
