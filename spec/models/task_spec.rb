@@ -37,7 +37,7 @@ describe Task do
       end
     end
 
-    describe "due at" do # will fail until we cover hooks
+    describe "due at" do
       it "date created by default" do
         new_task = Task.create(title: "Pay electric bill")
         expect(new_task.due_at).to eq(Date.today)
