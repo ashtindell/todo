@@ -1,0 +1,33 @@
+<%= form_for(@task) do |f| %>
+
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div>
+    <%= f.label :title %>:
+    <%= f.text_field :title %>
+  </div>
+  <br />
+  
+  <div>
+    <%= f.label :completed %>:
+    <%= f.check_box :completed %>
+  </div>
+  <br />
+  
+  <div>
+    <%= f.label :due_at %>:
+    <%= f.date_field :due_at %>
+  </div>
+  <br />
+  
+  <div>
+    <%= f.label :location %>:
+    <%= f.text_field :location %>
+  </div>
+  <br />
+  
+  <div>
+    <%= f.submit 'Save' %>
+  </div>
+
+<% end %>

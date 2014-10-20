@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
   # match is more readable for static pages
+  match '/',      to: 'static_pages#home',  via: 'get'
   match '/home',  to: 'static_pages#home',  via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
   match '/help',  to: 'static_pages#help',  via: 'get'
 
+  # this is limiting which ones are available for learning purposes
+  resources :tasks, only: [:show, :new, :create, :index, :edit, :update, :destroy]
+
   # get is better used for dynamic pages
-  get '/tasks/:id', to: 'tasks#show', as: :show_task
+  # get '/tasks/:id', to: 'tasks#show', as: :show_task
+  # get '/tasks/new', to: 'tasks#new',  as: :tasks_new
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

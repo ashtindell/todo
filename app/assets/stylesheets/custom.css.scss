@@ -1,0 +1,99 @@
+body { 
+  padding-top: 70px;
+  padding-bottom: 70px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  color: #FF8351;
+}
+
+/*--------------TYPOGRAPHY---------------*/
+
+h1 {
+  color: #FF8351;
+  font-size: 2em;
+  margin-bottom: 30px;
+}
+
+a {
+  color: #FF8351;
+}
+
+th {
+  color: #FF8351;
+}
+
+/*---------------NAVBAR---------------*/
+
+.navbar {
+  
+}
+
+.navbar-default {
+background-color: #FF8351;
+}
+
+.navbar-default .navbar-brand {
+color: #fff;
+}
+
+.navbar-default .navbar-nav>li>a {
+color: #fff;
+}
+
+/*---------------BUTTONS--------------*/
+
+.button-cell {
+  width: 10%;
+  background-color: #FF8351;
+}
+
+.button-cell a {
+  color: #ffffff;
+}
+
+.btn-default {
+  border-color: #FF8351;
+  color: #FF8351;
+  border-radius: 0px;
+  margin: 0 auto;
+  display: block;
+  width: 135px;
+}
+
+/*----------------TABLES---------------*/
+
+.table {
+  border-bottom: 1px solid #ddd;
+}
+
+/*----------------FOOTER---------------*/
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #999;
+}
+
+footer a {
+  color: #FF8351;
+}
+
+footer a:hover {
+  color: #999;
+  text-decoration: none;
+}
+
+footer small {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 10px;
+}

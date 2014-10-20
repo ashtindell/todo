@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Task do
-  before { @task = Task.new(title: "Walk the dog", completed: true, location: "at the park") }
+  before { @task = Task.new(title: "Walk the dog", completed: false, location: "at the park") }
 
   subject { @task }
 
@@ -13,17 +13,17 @@ describe Task do
 
   describe "validations" do
     describe "title" do
-      describe "not present" do
+      context "not present" do
         before { @task.title = " " }
         it { should_not be_valid }
       end
 
-      describe "too short" do
+      context "too short" do
         before { @task.title = "a" * 2 }
         it { should_not be_valid }
       end
 
-      describe "too long" do
+      context "too long" do
         before { @task.title = "a" * 255 }
         it { should_not be_valid }      
       end
@@ -37,20 +37,27 @@ describe Task do
       end
     end
 
-    # describe "due at" do # will fail until we cover hooks
-    #   it "date created by default" do
-    #     new_task = Task.create(title: "Pay electric bill")
-    #     expect(new_task.due_at).to eq(Date.today)
-    #   end
-    # end
+    describe "due at" do
+      it "date created by default" do
+        new_task = Task.create(title: "Pay electric bill")
+        expect(new_task.due_at).to eq(Date.today)
+      end
+
+      it "uses selected date if selected" do
+        selected_date = 2.weeks.from_now.to_date
+        new_task = Task.create(title: "Future task", due_at: selected_date)
+        expect(new_task.due_at).to eq(selected_date)
+      end
+    end
+
 
     describe "location" do
-      describe "not long" do
+      context "not long" do
         before { @task.location = "a" * 255 }
         it { should_not be_valid }
       end
 
-      describe "not present" do
+      context "not present" do
         before { @task.location = " " }
         it { should be_valid }
       end
