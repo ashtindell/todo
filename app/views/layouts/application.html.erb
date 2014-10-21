@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <!--   <title>Todo</title>-->
+  <!-- <title>Todo | <%= yield(:title) %></title> -->
+  <title><%= (yield(:title) + " - " unless yield(:title).blank?).to_s + "Todo App" %></title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
-      <%= render 'layouts/navigation' %> 
-      <%= flash[:notice] %>
-      <%= yield %>
+      <%= render 'layouts/navigation' %>
+      <div class="container">
+        <%= flash[:notice] %>
+        <%= yield %>
+      </div>
       <%= render 'layouts/footer' %>
   </body>
 </html>
