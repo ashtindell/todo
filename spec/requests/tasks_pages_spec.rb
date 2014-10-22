@@ -9,7 +9,7 @@ describe "tasks_pages" do
 
     before { visit task_path(task.id) }
 
-    it { should have_title("Todo | Show Task") }
+    it { should have_title("Show Task | Todo") }
     it { should have_selector('h1', "I need to...") }
     it { should have_content('p', text: task.title) }
   end
@@ -17,7 +17,7 @@ describe "tasks_pages" do
   describe "new page GET /tasks/new" do
     before { visit new_task_path }
 
-    it { should have_title("Todo | New Task") }
+    it { should have_title("New Task | Todo") }
     it { should have_selector('h1', text: "I need to...") }
 
     describe "create POST /tasks" do
@@ -39,7 +39,7 @@ describe "tasks_pages" do
         describe "after submission" do
           before { click_button submit }
 
-          it { should have_title("Todo | Show Task") }
+          it { should have_title("Show Task | Todo") }
           it { should have_selector('p', text: "Do the dishes") }
         end
       end 
@@ -52,7 +52,7 @@ describe "tasks_pages" do
         describe "after submission" do
           before { click_button submit }
 
-          it { should have_title('Todo | New Task') }
+          it { should have_title('New Task | Todo') }
           it { should have_content('error') }
         end
       end   
@@ -63,7 +63,7 @@ describe "tasks_pages" do
     before { visit tasks_path }
     let(:task) { FactoryGirl.create(:task) }
 
-    it { should have_title('Todo | All Tasks') }
+    it { should have_title('All Tasks | Todo') }
     it { should have_selector('h1', text: 'All Tasks') }
 
     describe "destroy DELETE /tasks/:id" do
@@ -82,7 +82,7 @@ describe "tasks_pages" do
 
     before { visit edit_task_path(task.id) }
 
-    it { should have_title("Todo | Edit Task") }
+    it { should have_title("Edit Task | Todo") }
     it { should have_selector('h1', text: "I need to...") }
 
     describe "update PUT /task/:id" do
@@ -94,7 +94,7 @@ describe "tasks_pages" do
           click_button submit
         end
 
-        it { should have_title("Todo | Show Task") }
+        it { should have_title("Show Task | Todo") }
         it { should have_selector('p', text: "Walk the dog") }
         specify { expect(task.reload.title).to eq("Walk the dog") }
       end
@@ -105,7 +105,7 @@ describe "tasks_pages" do
           click_button submit
         end
 
-        it { should have_title('Todo | Edit Task') }
+        it { should have_title('Edit Task | Todo') }
         it { should have_content('error') }
       end
     end
