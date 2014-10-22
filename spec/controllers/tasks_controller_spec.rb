@@ -31,11 +31,11 @@ describe TasksController, type: :controller do
       it "creates task" do
         # when I post to the create action, change Task.count by 1, aka add 1 to the tasks db
         expect{
-          post :create, task: { title: "Walk Molly" }
+          post :create, task: FactoryGirl.attributes_for(:task)
         }.to change(Task, :count).by(1)
       end
       it  "redirects to :show" do
-        post :create, task: { title: "Walk Molly" }
+        post :create, task: FactoryGirl.attributes_for(:task)
         last_task = Task.last
         expect(response).to redirect_to(task_path(last_task.id))
       end
@@ -44,11 +44,11 @@ describe TasksController, type: :controller do
     context "invalid attributes" do
       it "does not create task" do
         expect{
-        post :create, task: { title: "" }
+        post :create, task: FactoryGirl.attributes_for(:task, title: " ")
         }.to_not change(Task, :count)
       end
       it "re-renders :new" do
-        post :create, task: { title: "" }
+        post :create, task: FactoryGirl.attributes_for(:task, title: " ")
         expect(response).to render_template(:new)
       end
     end
