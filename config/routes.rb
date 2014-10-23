@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   
   match '/signup',  to: 'users#new',          via: 'get'
   match '/signin',  to: 'sessions#new',       via: 'get'
+  match '/signout', to: 'sessions#destroy',   via: 'delete'
 
   # this is limiting which ones are available for learning purposes
   resources :tasks

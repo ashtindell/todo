@@ -58,8 +58,8 @@ describe TasksController, type: :controller do
   describe "GET index" do
     before { Task.destroy_all }
 
-    let(:first_task)  { FactoryGirl.create(:task) }
-    let(:second_task) { FactoryGirl.create(:task) }
+    let(:first_task)  { FactoryGirl.create(:task, title: "Walk the dog") }
+    let(:second_task) { FactoryGirl.create(:task, title: "Buy groderies") }
 
     it "renders :index" do
       get :index
@@ -91,13 +91,13 @@ describe TasksController, type: :controller do
 
     context "valid attributes" do
       it "changes @task attributes" do
-        put :update, id: task.id, task: { title: "Do the dishes" }
+        put :update, id: task.id, task: FactoryGirl.attributes_for(:task, title: "Do the dishes")
         task.reload
         expect(task.title).to eq("Do the dishes")
       end
 
       it "redirects to :show" do
-        put :update, id: task.id, task: { title: "Do the dishes" }
+        put :update, id: task.id, task: FactoryGirl.attributes_for(:task, title: "Do the dishes")
         last_task = Task.last
         expect(response).to redirect_to(task_path(last_task.id))
       end
@@ -105,13 +105,13 @@ describe TasksController, type: :controller do
 
     context "invalid attributes" do
       it "does not change @task's attributes" do
-        put :update, id: task.id, task: { title: "" }
+        put :update, id: task.id, task: FactoryGirl.attributes_for(:task, title: " ")
         task.reload
         expect(task.title).to eq("Walk the dog")
       end
 
       it "re-renders :edit" do
-        put :update, id: task.id, task: { title: "" }
+        put :update, id: task.id, task: FactoryGirl.attributes_for(:task, title: " ")
         expect(response).to render_template(:edit)
       end
     end    

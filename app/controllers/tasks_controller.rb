@@ -10,7 +10,8 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    # @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     if @task.save
       redirect_to task_path(@task.id), notice: "You created a new task!"
     else
@@ -19,7 +20,8 @@ class TasksController < ApplicationController
   end
 
   def index
-    @tasks = Task.all 
+    # @tasks = Task.all 
+    @tasks = current_user.tasks
   end
 
   def destroy
@@ -47,9 +49,9 @@ class TasksController < ApplicationController
       params.require(:task).permit(:title, :completed, :due_at, :location)
     end
 
-    # def signed_in_user
-    #   redirect_to signin_path, notice: "Please sign in." unless signed_in?
-    # end
+    def signed_in_user
+      redirect_to signin_path, notice: "Please sign in." unless signed_in?
+    end
  
 end
 

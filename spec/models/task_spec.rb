@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe Task do
-  before { @task = Task.new(title: "Walk the dog", completed: false, location: "at the park") }
+  let(:user) {FactoryGirl.create(:user) }
+
+  before { @task = user.tasks.create(title: "Walk the dog", completed: false, location: "at the park") }
 
   subject { @task }
 
@@ -9,6 +11,8 @@ describe Task do
   it { should respond_to(:due_at) }
   it { should respond_to(:completed) }
   it { should respond_to(:title) }
+  it { should respond_to(:user) }
+  it { should respond_to(:user_id) }
   it { should be_valid }
 
   describe "validations" do
@@ -32,20 +36,20 @@ describe Task do
 
     describe "completed" do
       it "false by default" do
-        new_task = Task.new(title: "Any working title")
+        new_task = user.tasks.new(title: "Any working title")
         expect(new_task.completed).to be_falsey
       end
     end
 
     describe "due at" do
       it "date created by default" do
-        new_task = Task.create(title: "Pay electric bill")
+        new_task = user.tasks.create(title: "Pay electric bill")
         expect(new_task.due_at).to eq(Date.today)
       end
 
       it "uses selected date if selected" do
         selected_date = 2.weeks.from_now.to_date
-        new_task = Task.create(title: "Future task", due_at: selected_date)
+        new_task = user.tasks.create(title: "Future task", due_at: selected_date)
         expect(new_task.due_at).to eq(selected_date)
       end
     end
@@ -62,5 +66,12 @@ describe Task do
         it { should be_valid }
       end
     end
+
+    describe "user_id" do
+      context "not present" do
+        before { @task.user_id = nil }
+        it { should_not be_valid }
+      end
+    end 
   end
 end

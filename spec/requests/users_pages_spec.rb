@@ -11,7 +11,7 @@ describe "users" do
     it { should have_selector('h1', text: "Sign Up") }
 
     describe "signup POST /users" do
-      let(:submit) { "Done" }
+      let(:submit) { "Submit" }
 
       context "valid information" do
         before do
