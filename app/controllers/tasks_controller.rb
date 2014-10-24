@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  # before_action :signed_in_user
+  before_action :signed_in_user
 
   def show
     @task = Task.find(params[:id]) 

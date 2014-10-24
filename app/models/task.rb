@@ -7,7 +7,6 @@ class Task < ActiveRecord::Base
   validates :location, length: { maximum: 254 }
   validates :user_id, presence: true
 
-
   def set_due_at
     # uses provided due_at or defaults to today
     self.due_at ||= Date.today
